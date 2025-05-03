@@ -2,7 +2,7 @@
 
 ## Initial Setup
 
-- [ ] Remove Next.js boilerplate, replace it with barebones components
+- [x] Remove Next.js boilerplate, replace it with barebones components
 
 ## Data Structure
 
