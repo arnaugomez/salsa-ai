@@ -12,4 +12,3 @@
 
 - TypeScript
 - Node.js. The script should be able to run as a standalone script outside the Next.js application.
-- Python
