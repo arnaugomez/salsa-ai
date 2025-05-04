@@ -74,10 +74,10 @@
 
 ### UI Layer
 
-- [ ] Create component for share button
-- [ ] Implement share page
-- [ ] Create custom hook for sharing functionality
-- [ ] Implement confirmation toast with Shadcn Sonner
+- [x] Create component for share button
+- [x] Implement share page
+- [x] Create custom hook for sharing functionality
+- [x] Implement confirmation toast with Shadcn Sonner
 
 ## Sound Generation
 
@@ -101,11 +101,11 @@
 
 ## Core Functionality
 
-- [ ] Implement saving/loading configuration in localStorage
-- [ ] Implement timer for dance session
-- [ ] Implement logic for audio playback at the right moment
-- [ ] Implement system for copying URL to clipboard
-- [ ] Create logic for validating selected steps
+- [x] Implement saving/loading configuration in localStorage
+- [x] Implement timer for dance session
+- [x] Implement logic for audio playback at the right moment
+- [x] Implement system for copying URL to clipboard
+- [x] Create logic for validating selected steps
 
 ## Testing and Optimization
 
