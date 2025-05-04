@@ -233,7 +233,7 @@ interface Configuration {
 
 **Mitigation**:
 
-- Implement a caching system for generated audio files
+- Implement a caching system for generated audio files: check if an audio file already exists before creating it.
 - Preload audio for the most likely next steps
 - Use the Web Audio API for precise playback
 - Implement a fallback system for when audio is not available

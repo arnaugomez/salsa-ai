@@ -1,11 +1,3 @@
-Plan and architect a Salsa dancing instructor web app to help people practice salsa.
-
-Write a plan.md file with a very detailed plan of the architecture, tech stack, folder and file structure,
-views and pages. Identify the places where the project has the most risk of failure and describe them in detail.
-
-Then, write a tasks.md file with a detailed list of tasks to implement the project. Each task is a markdown checkbox.
-
-Create a Next.js web app with the following features:
 
 # Start page
 
