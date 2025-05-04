@@ -1,63 +1,65 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { PageContainer } from '@/shared/components';
-import { StepSelector, VoiceSelector } from '../components';
-import { useConfiguration } from '../hooks/use-configuration';
-import { toast } from 'sonner';
-import { validateStepsConfigurationUseCase } from '../../domain/usecases';
-import { stepRepository } from '@/domains/dance/data/repositories';
+import { Button } from "@/components/ui/button";
+import { stepRepository } from "@/domains/dance/data/repositories";
+import { PageContainer } from "@/shared/components";
+import Link from "next/link";
+import { toast } from "sonner";
+import { validateStepsConfigurationUseCase } from "../../domain/usecases";
+import { StepSelector, VoiceSelector } from "../components";
+import { useConfiguration } from "../hooks/use-configuration";
 
 export function ConfigurationPage() {
   const {
     configViewModel,
     updateSelectedSteps,
     updateSelectedVoice,
-    saveConfiguration
+    saveConfiguration,
   } = useConfiguration();
-  
+
   // Handle step selection change
   const handleStepsChange = (selectedSteps: string[]) => {
     if (!configViewModel) return;
-    
+
     // Validate step configuration
     const allSteps = stepRepository.getAll();
-    const validation = validateStepsConfigurationUseCase(selectedSteps, allSteps);
-    
+    const validation = validateStepsConfigurationUseCase(
+      selectedSteps,
+      allSteps
+    );
+
     // Update selected steps
     updateSelectedSteps(selectedSteps);
-    
+
     // Show warning if there are invalid steps
     if (!validation.isValid) {
-      const invalidStepsMessage = validation.invalidStepNames.join(', ');
+      const invalidStepsMessage = validation.invalidStepNames.join(", ");
       toast.warning(
         `Los siguientes pasos no tienen movimientos siguientes disponibles: ${invalidStepsMessage}`,
         { duration: 5000 }
       );
     }
   };
-  
+
   // Handle voice selection change
   const handleVoiceChange = (voiceId: string) => {
     if (!configViewModel) return;
     updateSelectedVoice(voiceId);
   };
-  
+
   // Handle save button click
   const handleSave = async () => {
     if (!configViewModel) return;
-    
+
     const success = await saveConfiguration();
-    
+
     if (success) {
-      toast.success('Configuración guardada correctamente');
+      toast.success("Configuración guardada correctamente");
     } else if (configViewModel.error) {
       toast.error(configViewModel.error);
     }
   };
-  
+
   if (!configViewModel) {
     return (
       <PageContainer title="Configuración">
@@ -67,19 +69,17 @@ export function ConfigurationPage() {
       </PageContainer>
     );
   }
-  
+
   return (
     <PageContainer title="Configuración">
       <div className="flex flex-col gap-8 w-full">
         {/* Back button */}
         <div className="w-full flex justify-start">
           <Link href="/">
-            <Button variant="outline">
-              Volver
-            </Button>
+            <Button variant="outline">Volver</Button>
           </Link>
         </div>
-        
+
         {/* Voice selector */}
         <div className="w-full">
           <h2 className="text-2xl font-bold mb-4 text-primary">
@@ -90,7 +90,7 @@ export function ConfigurationPage() {
             onVoiceChange={handleVoiceChange}
           />
         </div>
-        
+
         {/* Step selector */}
         <div className="w-full">
           <h2 className="text-2xl font-bold mb-4 text-primary">
@@ -103,14 +103,13 @@ export function ConfigurationPage() {
             onStepsChange={handleStepsChange}
           />
         </div>
-        
+
         {/* Save button */}
         <div className="w-full flex justify-end mt-4">
-          <Button 
-            onClick={handleSave}
-            disabled={configViewModel.isSaving}
-          >
-            {configViewModel.isSaving ? 'Guardando...' : 'Guardar configuración'}
+          <Button onClick={handleSave} disabled={configViewModel.isSaving}>
+            {configViewModel.isSaving
+              ? "Guardando..."
+              : "Guardar configuración"}
           </Button>
         </div>
       </div>
