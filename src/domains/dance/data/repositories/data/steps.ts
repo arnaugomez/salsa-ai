@@ -1,5 +1,47 @@
 import { DanceStep } from "@/domains/dance/domain/entities";
 
+const singleStepIds = [
+  "salsa-single-basico",
+  "salsa-single-en-el-sitio",
+  "salsa-single-mambo",
+  "salsa-single-circula",
+  "salsa-single-lateral",
+  "salsa-single-cruzado-por-atras",
+  "salsa-single-caminando",
+  "salsa-single-un-fly",
+  "salsa-single-dos-flys",
+  "salsa-single-tres-flys",
+  "salsa-single-un-grito",
+  "salsa-single-vuelta-derecha",
+  "salsa-single-vuelta-izquierda",
+  "salsa-single-echeverria",
+  "salsa-single-reggaeton",
+];
+
+const coupleBasicStepIds = [
+  "salsa-couple-basico",
+  "salsa-couple-un-fly",
+  "salsa-couple-en-el-sitio",
+  "salsa-couple-caminamos-hacia-arriba",
+  "salsa-couple-lateral",
+  "salsa-couple-abajo-con-salsa",
+  "salsa-couple-aspirina",
+  "salsa-couple-dile-que-no",
+  "salsa-couple-dile-que-no-caminado",
+];
+
+const coupleCubanStepIds = [
+  "salsa-couple-enchufla",
+  "salsa-couple-enchufla-doble",
+  "salsa-couple-cero",
+  "salsa-couple-cubanito",
+  "salsa-couple-vacilala",
+  "salsa-couple-casate-con-ella",
+  "salsa-couple-setenta",
+  "salsa-couple-cafe",
+  "salsa-couple-cubanita",
+];
+
 /**
  * Salsa dance steps for single mode (solo)
  */
