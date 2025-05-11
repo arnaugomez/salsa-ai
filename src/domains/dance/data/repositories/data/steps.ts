@@ -218,24 +218,7 @@ export const salsaCoupleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-couple-basico",
-      "salsa-couple-un-fly",
-      "salsa-couple-en-el-sitio",
-      "salsa-couple-caminamos-hacia-arriba",
-      "salsa-couple-lateral",
-      "salsa-couple-abajo-con-salsa",
-      "salsa-couple-aspirina",
-      "salsa-couple-dile-que-no",
-      "salsa-couple-dile-que-no-caminado",
-      "salsa-couple-enchufla",
-      "salsa-couple-enchufla-doble",
-      "salsa-couple-cero",
-      "salsa-couple-cubanito",
-      "salsa-couple-vacilala",
-      "salsa-couple-casate-con-ella",
-      "salsa-couple-setenta",
-    ],
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-couple-un-fly",
@@ -244,11 +227,7 @@ export const salsaCoupleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-couple-basico",
-      "salsa-couple-en-el-sitio",
-      "salsa-couple-lateral",
-    ],
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-couple-en-el-sitio",
@@ -257,11 +236,7 @@ export const salsaCoupleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-couple-basico",
-      "salsa-couple-un-fly",
-      "salsa-couple-caminamos-hacia-arriba",
-    ],
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-couple-caminamos-hacia-arriba",
@@ -270,11 +245,7 @@ export const salsaCoupleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-couple-basico",
-      "salsa-couple-en-el-sitio",
-      "salsa-couple-lateral",
-    ],
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-couple-lateral",
@@ -283,12 +254,7 @@ export const salsaCoupleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-couple-basico",
-      "salsa-couple-un-fly",
-      "salsa-couple-caminamos-hacia-arriba",
-      "salsa-couple-abajo-con-salsa",
-    ],
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-couple-abajo-con-salsa",
@@ -297,11 +263,7 @@ export const salsaCoupleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-couple-basico",
-      "salsa-couple-lateral",
-      "salsa-couple-aspirina",
-    ],
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-couple-aspirina",
@@ -310,11 +272,7 @@ export const salsaCoupleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-couple-basico",
-      "salsa-couple-abajo-con-salsa",
-      "salsa-couple-dile-que-no",
-    ],
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-couple-dile-que-no",
@@ -323,11 +281,7 @@ export const salsaCoupleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-couple-basico",
-      "salsa-couple-aspirina",
-      "salsa-couple-dile-que-no-caminado",
-    ],
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-couple-dile-que-no-caminado",
@@ -336,11 +290,7 @@ export const salsaCoupleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-couple-basico",
-      "salsa-couple-dile-que-no",
-      "salsa-couple-enchufla",
-    ],
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-couple-enchufla",
@@ -349,11 +299,7 @@ export const salsaCoupleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-couple-basico",
-      "salsa-couple-dile-que-no-caminado",
-      "salsa-couple-enchufla-doble",
-    ],
+    nextMoves: coupleCubanStepIds,
   },
   {
     id: "salsa-couple-enchufla-doble",
@@ -362,11 +308,7 @@ export const salsaCoupleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-couple-basico",
-      "salsa-couple-enchufla",
-      "salsa-couple-cero",
-    ],
+    nextMoves: coupleCubanStepIds,
   },
   {
     id: "salsa-couple-cero",
@@ -375,11 +317,7 @@ export const salsaCoupleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-couple-basico",
-      "salsa-couple-enchufla-doble",
-      "salsa-couple-cubanito",
-    ],
+    nextMoves: coupleCubanStepIds,
   },
   {
     id: "salsa-couple-cubanito",
@@ -388,11 +326,7 @@ export const salsaCoupleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-couple-basico",
-      "salsa-couple-cero",
-      "salsa-couple-vacilala",
-    ],
+    nextMoves: coupleCubanStepIds,
   },
   {
     id: "salsa-couple-vacilala",
@@ -401,11 +335,7 @@ export const salsaCoupleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-couple-basico",
-      "salsa-couple-cubanito",
-      "salsa-couple-casate-con-ella",
-    ],
+    nextMoves: coupleCubanStepIds,
   },
   {
     id: "salsa-couple-casate-con-ella",
@@ -414,11 +344,7 @@ export const salsaCoupleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-couple-basico",
-      "salsa-couple-vacilala",
-      "salsa-couple-setenta",
-    ],
+    nextMoves: coupleCubanStepIds,
   },
   {
     id: "salsa-couple-setenta",
@@ -427,7 +353,7 @@ export const salsaCoupleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
-    nextMoves: ["salsa-couple-basico", "salsa-couple-casate-con-ella"],
+    nextMoves: coupleCubanStepIds,
   },
 
   // Salsa 2 steps
@@ -438,7 +364,7 @@ export const salsaCoupleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "couple",
     course: "salsa-2",
-    nextMoves: ["salsa-couple-basico", "salsa-couple-cubanita"],
+    nextMoves: coupleCubanStepIds,
   },
   {
     id: "salsa-couple-cubanita",
@@ -447,7 +373,7 @@ export const salsaCoupleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "couple",
     course: "salsa-2",
-    nextMoves: ["salsa-couple-basico", "salsa-couple-cafe"],
+    nextMoves: coupleCubanStepIds,
   },
 ];
 
