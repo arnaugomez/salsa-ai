@@ -5,8 +5,10 @@ const singleStepIds = [
   "salsa-single-en-el-sitio",
   "salsa-single-mambo",
   "salsa-single-circula",
+  "salsa-single-circula-con-gancho",
   "salsa-single-lateral",
   "salsa-single-cruzado-por-atras",
+  "salsa-single-cruzado-por-atras-con-gancho",
   "salsa-single-caminando",
   "salsa-single-un-fly",
   "salsa-single-dos-flys",
@@ -54,20 +56,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-single-basico",
-      "salsa-single-en-el-sitio",
-      "salsa-single-mambo",
-      "salsa-single-circula",
-      "salsa-single-lateral",
-      "salsa-single-cruzado-por-atras",
-      "salsa-single-caminando",
-      "salsa-single-un-fly",
-      "salsa-single-un-grito",
-      "salsa-single-vuelta-derecha",
-      "salsa-single-vuelta-izquierda",
-      "salsa-single-echeverria",
-    ],
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-single-en-el-sitio",
@@ -76,13 +65,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-single-basico",
-      "salsa-single-mambo",
-      "salsa-single-circula",
-      "salsa-single-lateral",
-      "salsa-single-un-fly",
-    ],
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-single-mambo",
@@ -91,12 +74,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-single-basico",
-      "salsa-single-en-el-sitio",
-      "salsa-single-circula",
-      "salsa-single-lateral",
-    ],
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-single-circula",
@@ -105,12 +83,16 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-single-basico",
-      "salsa-single-en-el-sitio",
-      "salsa-single-mambo",
-      "salsa-single-lateral",
-    ],
+    nextMoves: coupleBasicStepIds,
+  },
+  {
+    id: "salsa-single-circula-con-gancho",
+    name: "Circula y termínalo con gancho",
+    sayings: ["<speak>Circula y termínalo con gancho</speak>"],
+    dance: "salsa",
+    mode: "single",
+    course: "salsa-1",
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-single-lateral",
@@ -119,13 +101,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-single-basico",
-      "salsa-single-en-el-sitio",
-      "salsa-single-mambo",
-      "salsa-single-circula",
-      "salsa-single-cruzado-por-atras",
-    ],
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-single-cruzado-por-atras",
@@ -134,11 +110,16 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-single-basico",
-      "salsa-single-lateral",
-      "salsa-single-caminando",
-    ],
+    nextMoves: coupleBasicStepIds,
+  },
+  {
+    id: "salsa-single-cruzado-por-atras-con-gancho",
+    name: "Cruzado por atrás y termínalo con gancho",
+    sayings: ["<speak>Cruzado por atrás y termínalo con gancho</speak>"],
+    dance: "salsa",
+    mode: "single",
+    course: "salsa-1",
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-single-caminando",
@@ -147,11 +128,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-single-basico",
-      "salsa-single-cruzado-por-atras",
-      "salsa-single-un-fly",
-    ],
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-single-un-fly",
@@ -160,12 +137,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-single-basico",
-      "salsa-single-en-el-sitio",
-      "salsa-single-caminando",
-      "salsa-single-dos-flys",
-    ],
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-single-dos-flys",
@@ -174,7 +146,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: ["salsa-single-tres-flys"],
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-single-tres-flys",
@@ -183,7 +155,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: ["salsa-single-basico", "salsa-single-un-fly"],
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-single-un-grito",
@@ -192,11 +164,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-single-basico",
-      "salsa-single-vuelta-derecha",
-      "salsa-single-vuelta-izquierda",
-    ],
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-single-vuelta-derecha",
@@ -205,11 +173,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-single-basico",
-      "salsa-single-un-grito",
-      "salsa-single-vuelta-izquierda",
-    ],
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-single-vuelta-izquierda",
@@ -218,11 +182,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-single-basico",
-      "salsa-single-un-grito",
-      "salsa-single-vuelta-derecha",
-    ],
+    nextMoves: coupleBasicStepIds,
   },
   {
     id: "salsa-single-echeverria",
@@ -231,11 +191,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: [
-      "salsa-single-basico",
-      "salsa-single-vuelta-derecha",
-      "salsa-single-vuelta-izquierda",
-    ],
+    nextMoves: coupleBasicStepIds,
   },
 
   // Salsa 2 steps
@@ -246,11 +202,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-2",
-    nextMoves: [
-      "salsa-single-basico",
-      "salsa-single-mambo",
-      "salsa-single-circula",
-    ],
+    nextMoves: coupleBasicStepIds,
   },
 ];
 
