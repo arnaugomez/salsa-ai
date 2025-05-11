@@ -30,6 +30,8 @@ const coupleBasicStepIds = [
   "salsa-couple-aspirina",
   "salsa-couple-dile-que-no",
   "salsa-couple-dile-que-no-caminado",
+  "salsa-couple-paseo-por-atras",
+  "salsa-couple-paseo-por-atras-con-rebobina",
 ];
 
 const coupleCubanStepIds = [
@@ -42,6 +44,7 @@ const coupleCubanStepIds = [
   "salsa-couple-setenta",
   "salsa-couple-cafe",
   "salsa-couple-cubanita",
+  "salsa-couple-veinticinco",
 ];
 
 /**
@@ -370,6 +373,33 @@ export const salsaCoupleSteps: DanceStep[] = [
     id: "salsa-couple-cubanita",
     name: "Cubanita",
     sayings: ["<speak>Cubanita</speak>"],
+    dance: "salsa",
+    mode: "couple",
+    course: "salsa-2",
+    nextMoves: coupleCubanStepIds,
+  },
+  {
+    id: "salsa-couple-paseo-por-atras",
+    name: "Paseo por atrás",
+    sayings: ["<speak>Paseo por atrás</speak>"],
+    dance: "salsa",
+    mode: "couple",
+    course: "salsa-2",
+    nextMoves: coupleCubanStepIds,
+  },
+  {
+    id: "salsa-couple-paseo-por-atras-con-rebobina",
+    name: "Paseo por atrás con rebobina",
+    sayings: ["<speak>Paseo por atrás con rebobina</speak>"],
+    dance: "salsa",
+    mode: "couple",
+    course: "salsa-2",
+    nextMoves: coupleCubanStepIds,
+  },
+  {
+    id: "salsa-couple-veinticinco",
+    name: "Veinticinco",
+    sayings: ["<speak>Veinticinco</speak>"],
     dance: "salsa",
     mode: "couple",
     course: "salsa-2",
