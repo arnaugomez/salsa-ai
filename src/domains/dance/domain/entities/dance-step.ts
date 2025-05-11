@@ -7,42 +7,42 @@ export interface DanceStep {
    * Example: "salsa-single-basico"
    */
   id: string;
-  
+
   /**
    * Name of the step in Spanish
    * Example: "Básico"
    */
   name: string;
-  
+
   /**
    * SSML phrases for Azure TTS
    * Each saying is a short instruction that the instructor says for this step
    */
   sayings: string[];
-  
+
   /**
    * Dance type identifier
    * Example: "salsa", "bachata"
    */
   dance: string;
-  
+
   /**
    * Dance mode identifier
    * Example: "single", "couple"
    */
   mode: string;
-  
+
   /**
    * Course identifier
    * Example: "salsa-1", "salsa-2"
    */
   course: string;
-  
+
   /**
    * IDs of possible next steps
    * Used to create natural sequences of dance steps
    */
-  nextMoves: string[];
+  nextSteps: string[];
 }
 
 /**
@@ -60,8 +60,13 @@ export function getDanceStepDisplayName(step: DanceStep): string {
  * @param availableStepIds - Array of available step IDs
  * @returns True if the step has at least one valid next move
  */
-export function hasValidNextMoves(step: DanceStep, availableStepIds: string[]): boolean {
-  return step.nextMoves.some(nextMoveId => availableStepIds.includes(nextMoveId));
+export function hasValidnextSteps(
+  step: DanceStep,
+  availableStepIds: string[]
+): boolean {
+  return step.nextSteps.some((nextMoveId) =>
+    availableStepIds.includes(nextMoveId)
+  );
 }
 
 /**
@@ -72,13 +77,15 @@ export function hasValidNextMoves(step: DanceStep, availableStepIds: string[]): 
  * @returns Array of valid next dance steps
  */
 export function getNextSteps(
-  step: DanceStep, 
-  allSteps: DanceStep[], 
+  step: DanceStep,
+  allSteps: DanceStep[],
   availableStepIds: string[]
 ): DanceStep[] {
-  // Filter steps that are in both nextMoves and availableStepIds
-  const validNextMoveIds = step.nextMoves.filter(id => availableStepIds.includes(id));
-  
+  // Filter steps that are in both nextSteps and availableStepIds
+  const validNextMoveIds = step.nextSteps.filter((id) =>
+    availableStepIds.includes(id)
+  );
+
   // Return the actual step objects
-  return allSteps.filter(s => validNextMoveIds.includes(s.id));
+  return allSteps.filter((s) => validNextMoveIds.includes(s.id));
 }

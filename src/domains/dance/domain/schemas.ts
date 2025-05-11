@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 /**
  * Zod schema for validating Dance objects
@@ -6,7 +6,7 @@ import { z } from 'zod';
 export const danceSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
-  availableModes: z.array(z.string().min(1))
+  availableModes: z.array(z.string().min(1)),
 });
 
 /**
@@ -14,7 +14,7 @@ export const danceSchema = z.object({
  */
 export const danceModeSchema = z.object({
   id: z.string().min(1),
-  name: z.string().min(1)
+  name: z.string().min(1),
 });
 
 /**
@@ -27,7 +27,7 @@ export const danceStepSchema = z.object({
   dance: z.string().min(1),
   mode: z.string().min(1),
   course: z.string().min(1),
-  nextMoves: z.array(z.string())
+  nextSteps: z.array(z.string()),
 });
 
 /**
@@ -36,7 +36,7 @@ export const danceStepSchema = z.object({
 export const danceCourseSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
-  steps: z.array(z.string())
+  steps: z.array(z.string()),
 });
 
 /**
@@ -47,5 +47,5 @@ export const playlistSchema = z.object({
   image: z.string().url(),
   description: z.string(),
   url: z.string().url(),
-  dance: z.string().min(1)
+  dance: z.string().min(1),
 });

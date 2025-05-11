@@ -1,4 +1,4 @@
-import { DanceStep, hasValidNextMoves } from '@/domains/dance/domain/entities';
+import { DanceStep, hasValidnextSteps } from "@/domains/dance/domain/entities";
 
 /**
  * Validate that each selected step has valid next moves
@@ -14,20 +14,24 @@ export function validateStepsConfigurationUseCase(
   if (selectedStepIds.length === 0) {
     return { isValid: true, invalidStepNames: [] };
   }
-  
+
   // Get the selected steps
-  const selectedSteps = allSteps.filter(step => selectedStepIds.includes(step.id));
-  
+  const selectedSteps = allSteps.filter((step) =>
+    selectedStepIds.includes(step.id)
+  );
+
   // Check each step for valid next moves
-  const invalidSteps = selectedSteps.filter(step => !hasValidNextMoves(step, selectedStepIds));
-  
+  const invalidSteps = selectedSteps.filter(
+    (step) => !hasValidnextSteps(step, selectedStepIds)
+  );
+
   // If there are invalid steps, return their names
   if (invalidSteps.length > 0) {
     return {
       isValid: false,
-      invalidStepNames: invalidSteps.map(step => step.name)
+      invalidStepNames: invalidSteps.map((step) => step.name),
     };
   }
-  
+
   return { isValid: true, invalidStepNames: [] };
 }

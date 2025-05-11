@@ -157,7 +157,7 @@ interface DanceStep {
   dance: string; // Dance ID (salsa, bachata, etc.)
   mode: string; // Mode ID (single, couple)
   course: string; // Course ID (salsa-1, salsa-2, etc.)
-  nextMoves: string[]; // IDs of possible next steps
+  nextSteps: string[]; // IDs of possible next steps
 }
 ```
 
