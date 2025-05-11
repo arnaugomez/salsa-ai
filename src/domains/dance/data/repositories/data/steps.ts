@@ -56,7 +56,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: coupleBasicStepIds,
+    nextMoves: singleStepIds,
   },
   {
     id: "salsa-single-en-el-sitio",
@@ -65,7 +65,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: coupleBasicStepIds,
+    nextMoves: singleStepIds,
   },
   {
     id: "salsa-single-mambo",
@@ -74,7 +74,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: coupleBasicStepIds,
+    nextMoves: singleStepIds,
   },
   {
     id: "salsa-single-circula",
@@ -83,7 +83,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: coupleBasicStepIds,
+    nextMoves: singleStepIds,
   },
   {
     id: "salsa-single-circula-con-gancho",
@@ -92,7 +92,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-2",
-    nextMoves: coupleBasicStepIds,
+    nextMoves: singleStepIds,
   },
   {
     id: "salsa-single-lateral",
@@ -101,7 +101,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: coupleBasicStepIds,
+    nextMoves: singleStepIds,
   },
   {
     id: "salsa-single-cruzado-por-atras",
@@ -110,7 +110,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: coupleBasicStepIds,
+    nextMoves: singleStepIds,
   },
   {
     id: "salsa-single-cruzado-por-atras-con-gancho",
@@ -119,7 +119,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-2",
-    nextMoves: coupleBasicStepIds,
+    nextMoves: singleStepIds,
   },
   {
     id: "salsa-single-caminando",
@@ -128,7 +128,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: coupleBasicStepIds,
+    nextMoves: singleStepIds,
   },
   {
     id: "salsa-single-un-fly",
@@ -137,7 +137,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: coupleBasicStepIds,
+    nextMoves: singleStepIds,
   },
   {
     id: "salsa-single-dos-flys",
@@ -146,7 +146,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: coupleBasicStepIds,
+    nextMoves: singleStepIds,
   },
   {
     id: "salsa-single-tres-flys",
@@ -155,7 +155,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: coupleBasicStepIds,
+    nextMoves: singleStepIds,
   },
   {
     id: "salsa-single-un-grito",
@@ -164,7 +164,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: coupleBasicStepIds,
+    nextMoves: singleStepIds,
   },
   {
     id: "salsa-single-vuelta-derecha",
@@ -173,7 +173,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: coupleBasicStepIds,
+    nextMoves: singleStepIds,
   },
   {
     id: "salsa-single-vuelta-izquierda",
@@ -182,7 +182,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: coupleBasicStepIds,
+    nextMoves: singleStepIds,
   },
   {
     id: "salsa-single-echeverria",
@@ -191,7 +191,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
-    nextMoves: coupleBasicStepIds,
+    nextMoves: singleStepIds,
   },
 
   // Salsa 2 steps
@@ -202,7 +202,7 @@ export const salsaSingleSteps: DanceStep[] = [
     dance: "salsa",
     mode: "single",
     course: "salsa-2",
-    nextMoves: coupleBasicStepIds,
+    nextMoves: singleStepIds,
   },
 ];
 
