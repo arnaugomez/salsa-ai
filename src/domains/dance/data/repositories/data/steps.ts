@@ -91,7 +91,7 @@ export const salsaSingleSteps: DanceStep[] = [
     sayings: ["<speak>Circula y termínalo con gancho</speak>"],
     dance: "salsa",
     mode: "single",
-    course: "salsa-1",
+    course: "salsa-2",
     nextMoves: coupleBasicStepIds,
   },
   {
@@ -118,7 +118,7 @@ export const salsaSingleSteps: DanceStep[] = [
     sayings: ["<speak>Cruzado por atrás y termínalo con gancho</speak>"],
     dance: "salsa",
     mode: "single",
-    course: "salsa-1",
+    course: "salsa-2",
     nextMoves: coupleBasicStepIds,
   },
   {
