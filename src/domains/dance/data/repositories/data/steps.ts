@@ -8,11 +8,7 @@ export const salsaSingleSteps: DanceStep[] = [
   {
     id: "salsa-single-basico",
     name: "Básico",
-    sayings: [
-      "<speak>Básico</speak>",
-      "<speak>Paso básico</speak>",
-      "<speak>Uno, dos, tres... cinco, seis, siete</speak>",
-    ],
+    sayings: ["<speak>Básico</speak>"],
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
@@ -34,7 +30,7 @@ export const salsaSingleSteps: DanceStep[] = [
   {
     id: "salsa-single-en-el-sitio",
     name: "En el sitio",
-    sayings: ["<speak>En el sitio</speak>", "<speak>Baila en el sitio</speak>"],
+    sayings: ["<speak>En el sitio</speak>"],
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
@@ -49,7 +45,7 @@ export const salsaSingleSteps: DanceStep[] = [
   {
     id: "salsa-single-mambo",
     name: "Mambo",
-    sayings: ["<speak>Mambo</speak>", "<speak>Paso de mambo</speak>"],
+    sayings: ["<speak>Mambo</speak>"],
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
@@ -63,7 +59,7 @@ export const salsaSingleSteps: DanceStep[] = [
   {
     id: "salsa-single-circula",
     name: "Circula",
-    sayings: ["<speak>Circula</speak>", "<speak>Haz un círculo</speak>"],
+    sayings: ["<speak>Circula</speak>"],
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
@@ -77,7 +73,7 @@ export const salsaSingleSteps: DanceStep[] = [
   {
     id: "salsa-single-lateral",
     name: "Lateral",
-    sayings: ["<speak>Lateral</speak>", "<speak>Paso lateral</speak>"],
+    sayings: ["<speak>Lateral</speak>"],
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
@@ -92,10 +88,7 @@ export const salsaSingleSteps: DanceStep[] = [
   {
     id: "salsa-single-cruzado-por-atras",
     name: "Cruzado por atrás",
-    sayings: [
-      "<speak>Cruzado por atrás</speak>",
-      "<speak>Cruza por detrás</speak>",
-    ],
+    sayings: ["<speak>Cruzado por atrás</speak>"],
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
@@ -108,7 +101,7 @@ export const salsaSingleSteps: DanceStep[] = [
   {
     id: "salsa-single-caminando",
     name: "Caminando",
-    sayings: ["<speak>Caminando</speak>", "<speak>Camina</speak>"],
+    sayings: ["<speak>Caminando</speak>"],
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
@@ -121,7 +114,7 @@ export const salsaSingleSteps: DanceStep[] = [
   {
     id: "salsa-single-un-fly",
     name: "Un fly",
-    sayings: ["<speak>Un fly</speak>", "<speak>Haz un fly</speak>"],
+    sayings: ["<speak>Un fly</speak>"],
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
@@ -135,7 +128,7 @@ export const salsaSingleSteps: DanceStep[] = [
   {
     id: "salsa-single-dos-flys",
     name: "Dos flys",
-    sayings: ["<speak>Dos flys</speak>", "<speak>Haz dos flys</speak>"],
+    sayings: ["<speak>Dos flys</speak>"],
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
@@ -144,7 +137,7 @@ export const salsaSingleSteps: DanceStep[] = [
   {
     id: "salsa-single-tres-flys",
     name: "Tres flys",
-    sayings: ["<speak>Tres flys</speak>", "<speak>Haz tres flys</speak>"],
+    sayings: ["<speak>Tres flys</speak>"],
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
@@ -153,7 +146,7 @@ export const salsaSingleSteps: DanceStep[] = [
   {
     id: "salsa-single-un-grito",
     name: "Un grito",
-    sayings: ["<speak>Un grito</speak>", "<speak>Haz un grito</speak>"],
+    sayings: ["<speak>Un grito</speak>"],
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
@@ -166,10 +159,7 @@ export const salsaSingleSteps: DanceStep[] = [
   {
     id: "salsa-single-vuelta-derecha",
     name: "Vuelta derecha",
-    sayings: [
-      "<speak>Vuelta derecha</speak>",
-      "<speak>Gira a la derecha</speak>",
-    ],
+    sayings: ["<speak>Vuelta derecha</speak>"],
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
@@ -182,10 +172,7 @@ export const salsaSingleSteps: DanceStep[] = [
   {
     id: "salsa-single-vuelta-izquierda",
     name: "Vuelta izquierda",
-    sayings: [
-      "<speak>Vuelta izquierda</speak>",
-      "<speak>Gira a la izquierda</speak>",
-    ],
+    sayings: ["<speak>Vuelta izquierda</speak>"],
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
@@ -198,7 +185,7 @@ export const salsaSingleSteps: DanceStep[] = [
   {
     id: "salsa-single-echeverria",
     name: "Echeverría",
-    sayings: ["<speak>Echeverría</speak>", "<speak>Paso Echeverría</speak>"],
+    sayings: ["<speak>Echeverría</speak>"],
     dance: "salsa",
     mode: "single",
     course: "salsa-1",
@@ -213,7 +200,7 @@ export const salsaSingleSteps: DanceStep[] = [
   {
     id: "salsa-single-reggaeton",
     name: "Reggaeton",
-    sayings: ["<speak>Reggaeton</speak>", "<speak>Paso de reggaeton</speak>"],
+    sayings: ["<speak>Reggaeton</speak>"],
     dance: "salsa",
     mode: "single",
     course: "salsa-2",
@@ -233,10 +220,7 @@ export const salsaCoupleSteps: DanceStep[] = [
   {
     id: "salsa-couple-basico",
     name: "Básico",
-    sayings: [
-      "<speak>Básico en pareja</speak>",
-      "<speak>Paso básico juntos</speak>",
-    ],
+    sayings: ["<speak>Básico</speak>"],
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
@@ -262,7 +246,7 @@ export const salsaCoupleSteps: DanceStep[] = [
   {
     id: "salsa-couple-un-fly",
     name: "Un fly",
-    sayings: ["<speak>Un fly</speak>", "<speak>Haz un fly</speak>"],
+    sayings: ["<speak>Un fly</speak>"],
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
@@ -275,10 +259,7 @@ export const salsaCoupleSteps: DanceStep[] = [
   {
     id: "salsa-couple-en-el-sitio",
     name: "En el sitio",
-    sayings: [
-      "<speak>En el sitio</speak>",
-      "<speak>Bailen en el sitio</speak>",
-    ],
+    sayings: ["<speak>En el sitio</speak>"],
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
@@ -291,10 +272,7 @@ export const salsaCoupleSteps: DanceStep[] = [
   {
     id: "salsa-couple-caminamos-hacia-arriba",
     name: "Caminamos hacia arriba",
-    sayings: [
-      "<speak>Caminamos hacia arriba</speak>",
-      "<speak>Caminen hacia arriba</speak>",
-    ],
+    sayings: ["<speak>Caminamos hacia arriba</speak>"],
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
@@ -307,7 +285,7 @@ export const salsaCoupleSteps: DanceStep[] = [
   {
     id: "salsa-couple-lateral",
     name: "Lateral",
-    sayings: ["<speak>Lateral</speak>", "<speak>Paso lateral</speak>"],
+    sayings: ["<speak>Lateral</speak>"],
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
@@ -321,10 +299,7 @@ export const salsaCoupleSteps: DanceStep[] = [
   {
     id: "salsa-couple-abajo-con-salsa",
     name: "Abajo con salsa",
-    sayings: [
-      "<speak>Abajo con salsa</speak>",
-      "<speak>Bajen con salsa</speak>",
-    ],
+    sayings: ["<speak>Abajo con salsa</speak>"],
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
@@ -337,7 +312,7 @@ export const salsaCoupleSteps: DanceStep[] = [
   {
     id: "salsa-couple-aspirina",
     name: "Aspirina",
-    sayings: ["<speak>Aspirina</speak>", "<speak>Paso aspirina</speak>"],
+    sayings: ["<speak>Aspirina</speak>"],
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
@@ -350,7 +325,7 @@ export const salsaCoupleSteps: DanceStep[] = [
   {
     id: "salsa-couple-dile-que-no",
     name: "Dile que no",
-    sayings: ["<speak>Dile que no</speak>", "<speak>Paso dile que no</speak>"],
+    sayings: ["<speak>Dile que no</speak>"],
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
@@ -363,7 +338,7 @@ export const salsaCoupleSteps: DanceStep[] = [
   {
     id: "salsa-couple-dile-que-no-caminado",
     name: "Dile que no caminado",
-    sayings: ["<speak>Dile que no caminado</speak>", "<speak>Paséala</speak>"],
+    sayings: ["<speak>Dile que no caminado</speak>"],
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
@@ -376,7 +351,7 @@ export const salsaCoupleSteps: DanceStep[] = [
   {
     id: "salsa-couple-enchufla",
     name: "Enchufla",
-    sayings: ["<speak>Enchufla</speak>", "<speak>Paso enchufla</speak>"],
+    sayings: ["<speak>Enchufla</speak>"],
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
@@ -389,7 +364,7 @@ export const salsaCoupleSteps: DanceStep[] = [
   {
     id: "salsa-couple-enchufla-doble",
     name: "Enchufla doble",
-    sayings: ["<speak>Enchufla doble</speak>", "<speak>Doble enchufla</speak>"],
+    sayings: ["<speak>Enchufla doble</speak>"],
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
@@ -402,7 +377,7 @@ export const salsaCoupleSteps: DanceStep[] = [
   {
     id: "salsa-couple-cero",
     name: "Cero",
-    sayings: ["<speak>Cero</speak>", "<speak>Paso cero</speak>"],
+    sayings: ["<speak>Cero</speak>"],
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
@@ -415,7 +390,7 @@ export const salsaCoupleSteps: DanceStep[] = [
   {
     id: "salsa-couple-cubanito",
     name: "Cubanito",
-    sayings: ["<speak>Cubanito</speak>", "<speak>Paso cubanito</speak>"],
+    sayings: ["<speak>Cubanito</speak>"],
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
@@ -428,7 +403,7 @@ export const salsaCoupleSteps: DanceStep[] = [
   {
     id: "salsa-couple-vacilala",
     name: "Vacílala",
-    sayings: ["<speak>Vacílala</speak>", "<speak>Vacila a la dama</speak>"],
+    sayings: ["<speak>Vacílala</speak>"],
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
@@ -441,10 +416,7 @@ export const salsaCoupleSteps: DanceStep[] = [
   {
     id: "salsa-couple-casate-con-ella",
     name: "Cásate con ella",
-    sayings: [
-      "<speak>Cásate con ella</speak>",
-      "<speak>Paso cásate con ella</speak>",
-    ],
+    sayings: ["<speak>Cásate con ella</speak>"],
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
@@ -457,7 +429,7 @@ export const salsaCoupleSteps: DanceStep[] = [
   {
     id: "salsa-couple-setenta",
     name: "Setenta",
-    sayings: ["<speak>Setenta</speak>", "<speak>Paso setenta</speak>"],
+    sayings: ["<speak>Setenta</speak>"],
     dance: "salsa",
     mode: "couple",
     course: "salsa-1",
@@ -468,7 +440,7 @@ export const salsaCoupleSteps: DanceStep[] = [
   {
     id: "salsa-couple-cafe",
     name: "Café",
-    sayings: ["<speak>Café</speak>", "<speak>Paso café</speak>"],
+    sayings: ["<speak>Café</speak>"],
     dance: "salsa",
     mode: "couple",
     course: "salsa-2",
@@ -477,7 +449,7 @@ export const salsaCoupleSteps: DanceStep[] = [
   {
     id: "salsa-couple-cubanita",
     name: "Cubanita",
-    sayings: ["<speak>Cubanita</speak>", "<speak>Paso cubanita</speak>"],
+    sayings: ["<speak>Cubanita</speak>"],
     dance: "salsa",
     mode: "couple",
     course: "salsa-2",
