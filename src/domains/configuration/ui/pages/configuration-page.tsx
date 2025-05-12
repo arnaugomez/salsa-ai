@@ -12,6 +12,7 @@ import { useConfiguration } from "../hooks/use-configuration";
 export function ConfigurationPage() {
   const {
     configViewModel,
+    configState,
     updateSelectedSteps,
     updateSelectedVoice,
     saveConfiguration,
@@ -55,8 +56,8 @@ export function ConfigurationPage() {
 
     if (success) {
       toast.success("Configuración guardada correctamente");
-    } else if (configViewModel.error) {
-      toast.error(configViewModel.error);
+    } else if (configState.error) {
+      toast.error(configState.error);
     }
   };
 
@@ -106,10 +107,8 @@ export function ConfigurationPage() {
 
         {/* Save button */}
         <div className="w-full flex justify-end mt-4">
-          <Button onClick={handleSave} disabled={configViewModel.isSaving}>
-            {configViewModel.isSaving
-              ? "Guardando..."
-              : "Guardar configuración"}
+          <Button onClick={handleSave} disabled={configState.isSaving}>
+            {configState.isSaving ? "Guardando..." : "Guardar configuración"}
           </Button>
         </div>
       </div>

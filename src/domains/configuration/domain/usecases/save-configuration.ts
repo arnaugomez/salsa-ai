@@ -1,44 +1,56 @@
-import { Configuration } from '../entities';
-import { ConfigurationViewModel, setSaving, setError, updateConfiguration } from '../../data/view-models';
-import { configurationRepository } from '../../data/repositories';
+import { Configuration } from "../entities";
+import {
+  ConfigurationState,
+  setError,
+  setSaving,
+} from "../../ui/state/configuration-state";
+import { configurationRepository } from "../../data/repositories";
 
 /**
  * Save configuration to local storage
- * @param viewModel - Current configuration view model
+ * @param state - Current UI state
  * @param config - Configuration to save
- * @returns Updated configuration view model
+ * @returns Updated UI state and a boolean indicating success
  */
 export async function saveConfigurationUseCase(
-  viewModel: ConfigurationViewModel,
+  state: ConfigurationState,
   config: Configuration
-): Promise<ConfigurationViewModel> {
+): Promise<{ state: ConfigurationState; success: boolean }> {
   // Set saving state
-  let updatedViewModel = setSaving(viewModel, true);
-  
+  let updatedState = setSaving(state, true);
+
   try {
     // Save configuration to local storage
     const success = configurationRepository.saveConfiguration(config);
-    
+
     if (!success) {
-      return setError(
-        setSaving(updatedViewModel, false),
-        'Error al guardar la configuración'
-      );
+      return {
+        state: setError(
+          setSaving(updatedState, false),
+          "Error al guardar la configuración"
+        ),
+        success: false,
+      };
     }
-    
-    // Update the view model with the new configuration
-    updatedViewModel = updateConfiguration(updatedViewModel, config);
-    
+
+    // Update the view model with the new configuration (handled by the caller)
+
     // Clear any previous error
-    updatedViewModel = setError(updatedViewModel, null);
-    
-    return setSaving(updatedViewModel, false);
+    updatedState = setError(updatedState, null);
+
+    return {
+      state: setSaving(updatedState, false),
+      success: true,
+    };
   } catch (error) {
-    console.error('Error saving configuration:', error);
-    
-    return setError(
-      setSaving(updatedViewModel, false),
-      'Error al guardar la configuración'
-    );
+    console.error("Error saving configuration:", error);
+
+    return {
+      state: setError(
+        setSaving(updatedState, false),
+        "Error al guardar la configuración"
+      ),
+      success: false,
+    };
   }
 }
