@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import {
   ConfigurationViewModel,
   createConfigurationViewModel,
@@ -11,6 +11,7 @@ import {
   ConfigurationState,
   createDefaultConfigurationState,
 } from "../state/configuration-state";
+import { Configuration } from "../../domain/entities";
 
 /**
  * Custom hook for managing configuration
@@ -25,6 +26,9 @@ export function useConfiguration() {
     createDefaultConfigurationState()
   );
 
+  // Reference to store the previous configuration for comparison
+  const prevConfigRef = useRef<Configuration | null>(null);
+
   // Load configuration on mount
   useEffect(() => {
     const config = configurationRepository.getConfiguration();
@@ -32,6 +36,9 @@ export function useConfiguration() {
 
     // Initialize view model with form data
     setConfigViewModel(createConfigurationViewModel(config, voices));
+
+    // Initialize the previous config reference
+    prevConfigRef.current = config;
   }, []);
 
   /**
@@ -103,6 +110,28 @@ export function useConfiguration() {
       return false;
     }
   }, [configViewModel, configState]);
+
+  // Listen for configuration changes and save automatically
+  useEffect(() => {
+    // Skip if no view model is available yet
+    if (!configViewModel) return;
+
+    // Skip the initial render
+    if (!prevConfigRef.current) {
+      prevConfigRef.current = configViewModel.configuration;
+      return;
+    }
+
+    // If the configuration reference has changed, save it
+    if (prevConfigRef.current !== configViewModel.configuration) {
+      // Update the previous config reference
+      prevConfigRef.current = configViewModel.configuration;
+      console.log("save")
+
+      // Save the configuration
+      saveConfiguration();
+    }
+  }, [configViewModel, saveConfiguration]);
 
   return {
     configViewModel,
