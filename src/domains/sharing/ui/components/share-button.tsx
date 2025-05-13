@@ -49,7 +49,7 @@ export function ShareButton({
       disabled={isSharing}
       {...props}
     >
-      {isSharing ? 'Compartiendo...' : children}
+      {children}
     </Button>
   );
 }

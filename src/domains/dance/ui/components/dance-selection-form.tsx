@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { Button } from '@/components/ui/button';
+import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -12,29 +12,30 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
+} from "@/components/ui/form";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Dance, DanceMode } from '../../domain/entities';
-import { danceRepository } from '../../data/repositories';
-import { configurationRepository } from '@/domains/configuration/data/repositories';
+} from "@/components/ui/select";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Dance, DanceMode } from "../../domain/entities";
+import { danceRepository } from "../../data/repositories";
+import { configurationRepository } from "@/domains/configuration/data/repositories";
+import { Configuration } from "@/domains/configuration/domain/entities";
 
 // Define the form schema with Zod
 const formSchema = z.object({
   danceType: z.string().min(1, {
-    message: 'Por favor selecciona un tipo de baile',
+    message: "Por favor selecciona un tipo de baile",
   }),
   mode: z.string().min(1, {
-    message: 'Por favor selecciona un modo',
+    message: "Por favor selecciona un modo",
   }),
   difficulty: z.string().min(1, {
-    message: 'Por favor selecciona un nivel de dificultad',
+    message: "Por favor selecciona un nivel de dificultad",
   }),
 });
 
@@ -50,66 +51,123 @@ export function DanceSelectionForm({ onSubmit }: DanceSelectionFormProps) {
   // State for available dances and modes
   const [dances, setDances] = useState<Dance[]>([]);
   const [modes, setModes] = useState<DanceMode[]>([]);
-  
-  // Initialize the form
+
+  // Initialize the form with sensible defaults
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      danceType: '',
-      mode: '',
-      difficulty: '3',
+      danceType: "salsa", // Default to salsa if no configuration exists
+      mode: "couple", // Default to couple mode if no configuration exists
+      difficulty: "3",
     },
   });
-  
+
   // Load dances and initial configuration on mount
   useEffect(() => {
     // Get all available dances
     const availableDances = danceRepository.getAllDances();
     setDances(availableDances);
-    
+
     // Load saved configuration
     const config = configurationRepository.getConfiguration();
-    
-    // Set form default values from saved configuration
+
+    // Determine the dance type to use (from config or default to first available dance or 'salsa')
+    const danceType = config.selectedDance || availableDances[0]?.id || "salsa";
+
+    // Load available modes for the selected dance
+    const danceModes = danceRepository.getModesForDance(danceType);
+    setModes(danceModes);
+
+    // Determine the mode to use (from config or default to first available mode or 'couple')
+    const mode = config.selectedMode || danceModes[0]?.id || "couple";
+
+    // Set form default values from saved configuration with fallbacks
     form.reset({
-      danceType: config.selectedDance || availableDances[0]?.id || '',
-      mode: config.selectedMode || '',
-      difficulty: config.difficulty.toString() || '3',
+      danceType: danceType,
+      mode: mode,
+      difficulty: config.difficulty.toString() || "3",
     });
-    
-    // If a dance is selected, load its available modes
-    if (config.selectedDance) {
-      const danceModes = danceRepository.getModesForDance(config.selectedDance);
-      setModes(danceModes);
-    }
   }, [form]);
-  
+
+  // Save configuration to local storage
+  const saveConfiguration = (values: Partial<FormValues>) => {
+    // Get current configuration
+    const currentConfig = configurationRepository.getConfiguration();
+
+    // Update with new values
+    const updatedConfig: Configuration = {
+      ...currentConfig,
+      selectedDance: values.danceType || currentConfig.selectedDance,
+      selectedMode: values.mode || currentConfig.selectedMode,
+      difficulty: values.difficulty
+        ? parseInt(values.difficulty, 10)
+        : currentConfig.difficulty,
+    };
+
+    // Save to local storage
+    configurationRepository.saveConfiguration(updatedConfig);
+  };
+
   // Handle dance type change
   const handleDanceTypeChange = (value: string) => {
     // Get available modes for the selected dance
     const danceModes = danceRepository.getModesForDance(value);
     setModes(danceModes);
-    
-    // Reset mode if the current one is not available
-    const currentMode = form.getValues('mode');
-    if (!danceModes.some(mode => mode.id === currentMode)) {
-      form.setValue('mode', danceModes[0]?.id || '');
+
+    // Get current mode
+    const currentMode = form.getValues("mode");
+
+    // Check if current mode is available for the selected dance
+    if (!danceModes.some((mode) => mode.id === currentMode)) {
+      // If not available, set to first available mode or default to 'couple'
+      const newMode = danceModes[0]?.id || "couple";
+      form.setValue("mode", newMode);
+
+      // Save configuration with new dance type and mode
+      saveConfiguration({
+        danceType: value,
+        mode: newMode,
+      });
+    } else {
+      // Save configuration with just the new dance type
+      saveConfiguration({ danceType: value });
     }
   };
-  
+
+  // Handle mode change
+  const handleModeChange = (value: string) => {
+    // Save configuration with new mode
+    saveConfiguration({ mode: value });
+  };
+
+  // Handle difficulty change
+  const handleDifficultyChange = (value: string) => {
+    // Save configuration with new difficulty
+    saveConfiguration({ difficulty: value });
+  };
+
   // Handle form submission
   const handleSubmit = (values: FormValues) => {
+    // Save all form values to configuration
+    saveConfiguration(values);
+
+    // Call the onSubmit callback
     onSubmit(values);
   };
-  
+
   return (
     <Card className="w-full max-w-md">
       <CardHeader>
-        <CardTitle className="text-center text-primary">Selecciona tu baile</CardTitle>
+        <CardTitle className="text-center text-primary">
+          Selecciona tu baile
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+          <form
+            onSubmit={form.handleSubmit(handleSubmit)}
+            className="space-y-6"
+          >
             {/* Dance Type Selection */}
             <FormField
               control={form.control}
@@ -122,7 +180,7 @@ export function DanceSelectionForm({ onSubmit }: DanceSelectionFormProps) {
                       field.onChange(value);
                       handleDanceTypeChange(value);
                     }}
-                    defaultValue={field.value}
+                    value={field.value}
                   >
                     <FormControl>
                       <SelectTrigger>
@@ -141,7 +199,7 @@ export function DanceSelectionForm({ onSubmit }: DanceSelectionFormProps) {
                 </FormItem>
               )}
             />
-            
+
             {/* Mode Selection */}
             <FormField
               control={form.control}
@@ -150,8 +208,11 @@ export function DanceSelectionForm({ onSubmit }: DanceSelectionFormProps) {
                 <FormItem>
                   <FormLabel>Modo</FormLabel>
                   <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
+                    onValueChange={(value) => {
+                      field.onChange(value);
+                      handleModeChange(value);
+                    }}
+                    value={field.value}
                   >
                     <FormControl>
                       <SelectTrigger>
@@ -170,7 +231,7 @@ export function DanceSelectionForm({ onSubmit }: DanceSelectionFormProps) {
                 </FormItem>
               )}
             />
-            
+
             {/* Difficulty Selection */}
             <FormField
               control={form.control}
@@ -179,8 +240,11 @@ export function DanceSelectionForm({ onSubmit }: DanceSelectionFormProps) {
                 <FormItem>
                   <FormLabel>Nivel de dificultad</FormLabel>
                   <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
+                    onValueChange={(value) => {
+                      field.onChange(value);
+                      handleDifficultyChange(value);
+                    }}
+                    value={field.value}
                   >
                     <FormControl>
                       <SelectTrigger>
@@ -199,7 +263,7 @@ export function DanceSelectionForm({ onSubmit }: DanceSelectionFormProps) {
                 </FormItem>
               )}
             />
-            
+
             <Button type="submit" className="w-full">
               Comenzar
             </Button>
