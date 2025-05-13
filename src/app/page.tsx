@@ -7,7 +7,7 @@ import { ConfigurationPage } from "@/domains/configuration/ui/pages/configuratio
 import { SharePage } from "@/domains/sharing/ui/pages/share-page";
 import { Configuration } from "@/domains/configuration/domain/entities";
 import { configurationRepository } from "@/domains/configuration/data/repositories";
-import { useDanceSession } from "@/domains/dance/ui/hooks/use-dance-session";
+import { DanceSessionProvider } from "@/domains/dance/ui/contexts/dance-session-context";
 
 // Define the possible app states
 type AppState = "start" | "dance" | "configuration" | "share";
@@ -18,9 +18,6 @@ export default function Home() {
 
   // State for the configuration
   const [config, setConfig] = useState<Configuration | null>(null);
-
-  // Use the dance session hook
-  const { session } = useDanceSession();
 
   // Load configuration on mount
   useEffect(() => {
@@ -63,23 +60,24 @@ export default function Home() {
       case "configuration":
         return <ConfigurationPage />;
       case "share":
-        return (
-          <SharePage session={session} onBackToStart={handleBackToStart} />
-        );
+        return <SharePage onBackToStart={handleBackToStart} />;
       default:
         return <StartPage onStartDance={handleStartDance} />;
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      {renderPage()}
+    <DanceSessionProvider>
+      <div className="min-h-screen flex flex-col">
+        {renderPage()}
 
-      <footer className="mt-auto py-4 text-center text-sm text-muted-foreground">
-        <p>
-          © {new Date().getFullYear()} Salsa Pro - Todos los derechos reservados
-        </p>
-      </footer>
-    </div>
+        <footer className="mt-auto py-4 text-center text-sm text-muted-foreground">
+          <p>
+            © {new Date().getFullYear()} Salsa Pro - Todos los derechos
+            reservados
+          </p>
+        </footer>
+      </div>
+    </DanceSessionProvider>
   );
 }

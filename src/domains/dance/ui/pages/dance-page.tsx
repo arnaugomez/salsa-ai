@@ -58,16 +58,26 @@ export function DancePage({ config, onStopDance }: DancePageProps) {
         return;
       }
 
-      // Select a random initial step
+      // When no steps are selected, add all available steps to the configuration
+      // This ensures the Básico step will be included in the selection
+      config.selectedSteps = availableSteps.map((step) => step.id);
+
+      // Select the Básico step as the initial step
+      console.log("Selecting Básico as initial step");
       const initialStep = selectInitialStep();
+      console.log("Selected initial step:", initialStep?.name);
+
       if (initialStep) {
         await startSession(initialStep);
       } else {
         toast.error("No se pudo seleccionar un paso inicial");
       }
     } else {
-      // Select a random initial step from the selected steps
+      // Select the Básico step as the initial step
+      console.log("Selecting Básico as initial step from selected steps");
       const initialStep = selectInitialStep();
+      console.log("Selected initial step:", initialStep?.name);
+
       if (initialStep) {
         await startSession(initialStep);
       } else {

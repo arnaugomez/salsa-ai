@@ -1,22 +1,23 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { PageContainer } from '@/shared/components';
-import { ShareButton } from '../components';
-import { DanceSessionViewModel } from '@/domains/dance/data/view-models';
-import { formatTime } from '@/shared/utils';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PageContainer } from "@/shared/components";
+import { ShareButton } from "../components";
+import { useDanceSession } from "@/domains/dance/ui/contexts/dance-session-context";
+import { formatTime } from "@/shared/utils";
 
 interface SharePageProps {
-  session: DanceSessionViewModel;
   onBackToStart: () => void;
 }
 
-export function SharePage({ session, onBackToStart }: SharePageProps) {
-  console.log(session)
+export function SharePage({ onBackToStart }: SharePageProps) {
+  // Get the session from context
+  const { session } = useDanceSession();
+
   // Format the dance time
   const formattedTime = formatTime(session.elapsedTime);
-  
+
   return (
     <PageContainer title="¡Felicidades!">
       <div className="flex flex-col items-center gap-8 w-full max-w-md mx-auto">
@@ -31,27 +32,17 @@ export function SharePage({ session, onBackToStart }: SharePageProps) {
               <p className="text-lg mb-2">Has bailado durante</p>
               <p className="text-4xl font-bold text-primary">{formattedTime}</p>
             </div>
-            
+
             <div className="text-center mt-6">
-              <p className="text-lg mb-4">
-                ¡Comparte tu logro con tus amigos!
-              </p>
-              <ShareButton 
-                session={session}
-                size="lg"
-                className="w-full"
-              >
+              <p className="text-lg mb-4">¡Comparte tu logro con tus amigos!</p>
+              <ShareButton size="lg" className="w-full">
                 Compartir en redes sociales
               </ShareButton>
             </div>
           </CardContent>
         </Card>
-        
-        <Button 
-          variant="outline" 
-          onClick={onBackToStart}
-          className="mt-4"
-        >
+
+        <Button variant="outline" onClick={onBackToStart} className="mt-4">
           Volver al inicio
         </Button>
       </div>
