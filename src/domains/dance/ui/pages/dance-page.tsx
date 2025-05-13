@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { PageContainer } from '@/shared/components';
-import { StepDisplay, TimerDisplay, PlaylistGrid } from '../components';
-import { useDanceSession, useStepSequence } from '../hooks';
-import { Configuration } from '@/domains/configuration/domain/entities';
-import { playlistRepository, stepRepository } from '../../data/repositories';
-import { Playlist } from '../../domain/entities';
-import { toast } from 'sonner';
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { PageContainer } from "@/shared/components";
+import { StepDisplay, TimerDisplay, PlaylistGrid } from "../components";
+import { useDanceSession, useStepSequence } from "../hooks";
+import { Configuration } from "@/domains/configuration/domain/entities";
+import { playlistRepository, stepRepository } from "../../data/repositories";
+import { Playlist } from "../../domain/entities";
+import { toast } from "sonner";
 
 interface DancePageProps {
   config: Configuration;
@@ -16,40 +16,54 @@ interface DancePageProps {
 }
 
 export function DancePage({ config, onStopDance }: DancePageProps) {
+  console.log("DancePage received config:", config);
+  console.log("Mode in DancePage config:", config.selectedMode);
+
   // State for playlists
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
-  
+
   // Use custom hooks
   const { session, startSession, stopSession } = useDanceSession();
   const { currentStep, selectInitialStep } = useStepSequence(session, config);
-  
+
   // Load playlists on mount
   useEffect(() => {
-    const dancePlaylists = playlistRepository.getByDanceType(config.selectedDance);
+    const dancePlaylists = playlistRepository.getByDanceType(
+      config.selectedDance
+    );
     setPlaylists(dancePlaylists);
   }, [config.selectedDance]);
-  
+
   // Handle start dance button click
   const handleStartDance = async () => {
+    console.log("handleStartDance in DancePage, config:", config);
+    console.log("Mode being used to get steps:", config.selectedMode);
+
     // Check if there are selected steps
     if (config.selectedSteps.length === 0) {
       // If no steps are selected, use all steps for the selected dance and mode
+      console.log("No selected steps, getting all steps for dance and mode");
+      console.log("Dance type:", config.selectedDance);
+      console.log("Mode:", config.selectedMode);
+
       const availableSteps = stepRepository.getByDanceAndMode(
         config.selectedDance,
         config.selectedMode
       );
-      
+
+      console.log("Available steps found:", availableSteps.length);
+
       if (availableSteps.length === 0) {
-        toast.error('No hay pasos disponibles para esta configuración');
+        toast.error("No hay pasos disponibles para esta configuración");
         return;
       }
-      
+
       // Select a random initial step
       const initialStep = selectInitialStep();
       if (initialStep) {
         await startSession(initialStep);
       } else {
-        toast.error('No se pudo seleccionar un paso inicial');
+        toast.error("No se pudo seleccionar un paso inicial");
       }
     } else {
       // Select a random initial step from the selected steps
@@ -57,31 +71,31 @@ export function DancePage({ config, onStopDance }: DancePageProps) {
       if (initialStep) {
         await startSession(initialStep);
       } else {
-        toast.error('No se pudo seleccionar un paso inicial');
+        toast.error("No se pudo seleccionar un paso inicial");
       }
     }
   };
-  
+
   // Handle stop dance button click
   const handleStopDance = () => {
     stopSession();
     onStopDance();
   };
-  
+
   return (
     <PageContainer title="Sesión de baile">
       <div className="flex flex-col items-center gap-8 w-full">
         {!session.isActive ? (
           <>
             {/* Start button */}
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="w-full max-w-md text-lg py-6"
               onClick={handleStartDance}
             >
               Comenzar a bailar
             </Button>
-            
+
             {/* Playlists */}
             <div className="w-full mt-8">
               <h2 className="text-2xl font-bold mb-4 text-primary">
@@ -97,11 +111,11 @@ export function DancePage({ config, onStopDance }: DancePageProps) {
               <StepDisplay step={currentStep} />
               <TimerDisplay elapsedTime={session.elapsedTime} />
             </div>
-            
+
             {/* Stop button */}
-            <Button 
-              variant="destructive" 
-              size="lg" 
+            <Button
+              variant="destructive"
+              size="lg"
               className="mt-4"
               onClick={handleStopDance}
             >

@@ -1,4 +1,4 @@
-import { DanceStep } from '../../domain/entities';
+import { DanceStep } from "../../domain/entities";
 
 /**
  * View model for a dance session
@@ -8,22 +8,22 @@ export interface DanceSessionViewModel {
    * Whether the session is currently active
    */
   isActive: boolean;
-  
+
   /**
    * Current dance step
    */
   currentStep: DanceStep | null;
-  
+
   /**
    * Time elapsed in seconds
    */
   elapsedTime: number;
-  
+
   /**
    * Start time of the session
    */
   startTime: Date | null;
-  
+
   /**
    * End time of the session
    */
@@ -40,7 +40,7 @@ export function createDanceSessionViewModel(): DanceSessionViewModel {
     currentStep: null,
     elapsedTime: 0,
     startTime: null,
-    endTime: null
+    endTime: null,
   };
 }
 
@@ -60,7 +60,7 @@ export function startDanceSession(
     currentStep: initialStep,
     elapsedTime: 0,
     startTime: new Date(),
-    endTime: null
+    endTime: null,
   };
 }
 
@@ -76,7 +76,7 @@ export function updateCurrentStep(
 ): DanceSessionViewModel {
   return {
     ...session,
-    currentStep: step
+    currentStep: step,
   };
 }
 
@@ -92,7 +92,7 @@ export function updateElapsedTime(
 ): DanceSessionViewModel {
   return {
     ...session,
-    elapsedTime
+    elapsedTime,
   };
 }
 
@@ -104,9 +104,20 @@ export function updateElapsedTime(
 export function endDanceSession(
   session: DanceSessionViewModel
 ): DanceSessionViewModel {
+  const endTime = new Date();
+
+  // Calculate the final elapsed time based on start and end times
+  let finalElapsedTime = session.elapsedTime;
+  if (session.startTime) {
+    finalElapsedTime = Math.floor(
+      (endTime.getTime() - session.startTime.getTime()) / 1000
+    );
+  }
+
   return {
     ...session,
     isActive: false,
-    endTime: new Date()
+    elapsedTime: finalElapsedTime,
+    endTime: endTime,
   };
 }

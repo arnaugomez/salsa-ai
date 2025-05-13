@@ -72,21 +72,22 @@ export function DanceSelectionForm({ onSubmit }: DanceSelectionFormProps) {
     const config = configurationRepository.getConfiguration();
 
     // Determine the dance type to use (from config or default to first available dance or 'salsa')
-    const danceType = config.selectedDance || availableDances[0]?.id || "salsa";
+    const danceType = config.selectedDance || "salsa";
 
     // Load available modes for the selected dance
     const danceModes = danceRepository.getModesForDance(danceType);
     setModes(danceModes);
 
     // Determine the mode to use (from config or default to first available mode or 'couple')
-    const mode = config.selectedMode || danceModes[0]?.id || "couple";
+    const mode = config.selectedMode || "couple";
 
     // Set form default values from saved configuration with fallbacks
-    form.reset({
+    const defaultValues = {
       danceType: danceType,
       mode: mode,
       difficulty: config.difficulty.toString() || "3",
-    });
+    };
+    form.reset(defaultValues);
   }, [form]);
 
   // Save configuration to local storage
@@ -120,7 +121,7 @@ export function DanceSelectionForm({ onSubmit }: DanceSelectionFormProps) {
     // Check if current mode is available for the selected dance
     if (!danceModes.some((mode) => mode.id === currentMode)) {
       // If not available, set to first available mode or default to 'couple'
-      const newMode = danceModes[0]?.id || "couple";
+      const newMode = "couple";
       form.setValue("mode", newMode);
 
       // Save configuration with new dance type and mode
@@ -177,8 +178,15 @@ export function DanceSelectionForm({ onSubmit }: DanceSelectionFormProps) {
                   <FormLabel>Baile</FormLabel>
                   <Select
                     onValueChange={(value) => {
-                      field.onChange(value);
-                      handleDanceTypeChange(value);
+                      // Only update if we have a valid value
+                      if (value && value.trim() !== "") {
+                        field.onChange(value);
+                        handleDanceTypeChange(value);
+                      } else {
+                        console.warn(
+                          "Empty dance type value received, ignoring"
+                        );
+                      }
                     }}
                     value={field.value}
                   >
@@ -209,8 +217,11 @@ export function DanceSelectionForm({ onSubmit }: DanceSelectionFormProps) {
                   <FormLabel>Modo</FormLabel>
                   <Select
                     onValueChange={(value) => {
-                      field.onChange(value);
-                      handleModeChange(value);
+                      // Only update if we have a valid value
+                      if (value && value.trim() !== "") {
+                        field.onChange(value);
+                        handleModeChange(value);
+                      }
                     }}
                     value={field.value}
                   >

@@ -13,6 +13,7 @@ interface SharePageProps {
 }
 
 export function SharePage({ session, onBackToStart }: SharePageProps) {
+  console.log(session)
   // Format the dance time
   const formattedTime = formatTime(session.elapsedTime);
   
