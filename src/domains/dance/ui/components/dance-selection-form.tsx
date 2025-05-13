@@ -174,7 +174,7 @@ export function DanceSelectionForm({ onSubmit }: DanceSelectionFormProps) {
               name="danceType"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Tipo de baile</FormLabel>
+                  <FormLabel>Baile</FormLabel>
                   <Select
                     onValueChange={(value) => {
                       field.onChange(value);
