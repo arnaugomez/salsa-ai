@@ -27,12 +27,7 @@ export default function Home() {
 
   // Handle start dance button click
   const handleStartDance = (newConfig: Configuration) => {
-    console.log("handleStartDance received config:", newConfig);
-    console.log("Mode in received config:", newConfig.selectedMode);
-
     setConfig(newConfig);
-    console.log("Config state after update:", newConfig);
-
     setAppState("dance");
   };
 

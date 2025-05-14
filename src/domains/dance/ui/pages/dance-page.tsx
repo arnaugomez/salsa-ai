@@ -16,8 +16,6 @@ interface DancePageProps {
 }
 
 export function DancePage({ config, onStopDance }: DancePageProps) {
-  console.log("DancePage received config:", config);
-  console.log("Mode in DancePage config:", config.selectedMode);
 
   // State for playlists
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
@@ -36,22 +34,14 @@ export function DancePage({ config, onStopDance }: DancePageProps) {
 
   // Handle start dance button click
   const handleStartDance = async () => {
-    console.log("handleStartDance in DancePage, config:", config);
-    console.log("Mode being used to get steps:", config.selectedMode);
 
     // Check if there are selected steps
     if (config.selectedSteps.length === 0) {
       // If no steps are selected, use all steps for the selected dance and mode
-      console.log("No selected steps, getting all steps for dance and mode");
-      console.log("Dance type:", config.selectedDance);
-      console.log("Mode:", config.selectedMode);
-
       const availableSteps = stepRepository.getByDanceAndMode(
         config.selectedDance,
         config.selectedMode
       );
-
-      console.log("Available steps found:", availableSteps.length);
 
       if (availableSteps.length === 0) {
         toast.error("No hay pasos disponibles para esta configuración");
@@ -63,9 +53,7 @@ export function DancePage({ config, onStopDance }: DancePageProps) {
       config.selectedSteps = availableSteps.map((step) => step.id);
 
       // Select the Básico step as the initial step
-      console.log("Selecting Básico as initial step");
       const initialStep = selectInitialStep();
-      console.log("Selected initial step:", initialStep?.name);
 
       if (initialStep) {
         await startSession(initialStep);
@@ -74,9 +62,7 @@ export function DancePage({ config, onStopDance }: DancePageProps) {
       }
     } else {
       // Select the Básico step as the initial step
-      console.log("Selecting Básico as initial step from selected steps");
       const initialStep = selectInitialStep();
-      console.log("Selected initial step:", initialStep?.name);
 
       if (initialStep) {
         await startSession(initialStep);

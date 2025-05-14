@@ -126,8 +126,6 @@ export function useConfiguration() {
     if (prevConfigRef.current !== configViewModel.configuration) {
       // Update the previous config reference
       prevConfigRef.current = configViewModel.configuration;
-      console.log("save")
-
       // Save the configuration
       saveConfiguration();
     }

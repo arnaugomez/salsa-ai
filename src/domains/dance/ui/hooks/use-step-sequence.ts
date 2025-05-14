@@ -61,7 +61,6 @@ export function useStepSequence(
     }
 
     // Otherwise, fall back to random selection
-    console.log("Básico step not found, falling back to random selection");
     const step = selectRandomStepUseCase(allStepsRef.current, currentConfig);
     setCurrentStep(step);
     return step;
@@ -75,8 +74,6 @@ export function useStepSequence(
 
     if (!currentSession.isActive || !currentStepValue) return null;
 
-    console.log("Getting next step, current step:", currentStepValue.name);
-
     try {
       const updatedSession = await getNextStepUseCase(
         currentSession,
@@ -86,7 +83,6 @@ export function useStepSequence(
       );
 
       if (updatedSession.currentStep) {
-        console.log("New step selected:", updatedSession.currentStep.name);
         setCurrentStep(updatedSession.currentStep);
         return updatedSession.currentStep;
       }
@@ -118,22 +114,17 @@ export function useStepSequence(
       return;
     }
 
-    console.log("Setting up step sequence interval");
-
     // Calculate time between steps based on difficulty
     const stepInterval = getTimeBetweenSteps(config);
-    console.log(`Step interval: ${stepInterval}ms`);
 
     // Set up interval to change steps
     intervalRef.current = setInterval(() => {
-      console.log("Interval triggered, getting next step");
       // We call the function from the ref to ensure we're using the latest version
       getNextStepRef.current();
     }, stepInterval);
 
     // Return cleanup function
     return () => {
-      console.log("Cleaning up step sequence interval");
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
         intervalRef.current = null;

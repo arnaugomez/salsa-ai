@@ -33,15 +33,9 @@ export function StartPage({ onStartDance }: StartPageProps) {
     mode: string;
     difficulty: string;
   }) => {
-    console.log("StartPage handleSubmit received values:", values);
-    console.log("Mode value received in StartPage:", values.mode);
-
     if (!configViewModel) {
-      console.error("configViewModel is null, cannot submit form");
       return;
     }
-
-    console.log("Current configViewModel before update:", configViewModel);
 
     // Update configuration
     const updatedConfig: Configuration = {
@@ -50,9 +44,6 @@ export function StartPage({ onStartDance }: StartPageProps) {
       selectedMode: values.mode,
       difficulty: parseInt(values.difficulty, 10),
     };
-
-    console.log("Updated configuration:", updatedConfig);
-    console.log("Mode in updated configuration:", updatedConfig.selectedMode);
 
     // Start dance session
     onStartDance(updatedConfig);
