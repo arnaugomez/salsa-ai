@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { DanceStep } from "../../domain/entities";
 import {
   Configuration,
@@ -9,6 +9,7 @@ import {
 import {
   getNextStepUseCase,
   selectRandomStepUseCase,
+  findBasicStepUseCase,
 } from "../../domain/usecases";
 import { stepRepository } from "../../data/repositories";
 import { DanceSessionViewModel } from "../../data/view-models";
@@ -27,20 +28,31 @@ export function useStepSequence(
     session.currentStep
   );
 
-  // Get all steps
-  const allSteps = stepRepository.getAll();
+  // Store all steps once to avoid recreating on each render
+  const allStepsRef = useRef(stepRepository.getAll());
 
-  /**
-   * Select the "Básico" step as the initial step
-   * Falls back to random selection if "Básico" is not available
-   */
+  // Store interval ID to manage cleanup
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Store mutable references to session and config to avoid dependency issues
+  const sessionRef = useRef(session);
+  const configRef = useRef(config);
+
+  // Update refs when props change
+  useEffect(() => {
+    sessionRef.current = session;
+  }, [session]);
+
+  useEffect(() => {
+    configRef.current = config;
+  }, [config]);
+
+  // Function to select the initial step - wrapped in useCallback for consistency
   const selectInitialStep = useCallback(() => {
-    // Find the "Básico" step for the current dance and mode
-    const basicStepId = `${config.selectedDance}-${config.selectedMode}-basico`;
-    const basicStep = allSteps.find(
-      (step) =>
-        step.id === basicStepId && config.selectedSteps.includes(step.id)
-    );
+    const currentConfig = configRef.current;
+
+    // Try to find the basic step using the use case
+    const basicStep = findBasicStepUseCase(allStepsRef.current, currentConfig);
 
     // If the "Básico" step is available, use it
     if (basicStep) {
@@ -50,63 +62,84 @@ export function useStepSequence(
 
     // Otherwise, fall back to random selection
     console.log("Básico step not found, falling back to random selection");
-    const step = selectRandomStepUseCase(allSteps, config);
+    const step = selectRandomStepUseCase(allStepsRef.current, currentConfig);
     setCurrentStep(step);
     return step;
-  }, [allSteps, config]);
+  }, []); // No dependencies as it uses refs
 
-  /**
-   * Get the next step in the sequence
-   */
+  // Function to get the next step - wrapped in useCallback to maintain reference stability
   const getNextStep = useCallback(async () => {
-    if (!session.isActive || !currentStep) return null;
+    const currentSession = sessionRef.current;
+    const currentConfig = configRef.current;
+    const currentStepValue = currentStep;
 
-    const updatedSession = await getNextStepUseCase(
-      session,
-      allSteps,
-      config.selectedSteps,
-      config.selectedVoice
-    );
+    if (!currentSession.isActive || !currentStepValue) return null;
 
-    if (updatedSession.currentStep) {
-      setCurrentStep(updatedSession.currentStep);
-      return updatedSession.currentStep;
+    console.log("Getting next step, current step:", currentStepValue.name);
+
+    try {
+      const updatedSession = await getNextStepUseCase(
+        currentSession,
+        allStepsRef.current,
+        currentConfig.selectedSteps,
+        currentConfig.selectedVoice
+      );
+
+      if (updatedSession.currentStep) {
+        console.log("New step selected:", updatedSession.currentStep.name);
+        setCurrentStep(updatedSession.currentStep);
+        return updatedSession.currentStep;
+      }
+    } catch (error) {
+      console.error("Error getting next step:", error);
     }
 
     return null;
-  }, [
-    session,
-    currentStep,
-    allSteps,
-    config.selectedSteps,
-    config.selectedVoice,
-  ]);
+  }, [currentStep]); // Only depend on currentStep
 
-  /**
-   * Start automatic step sequence
-   */
-  const startStepSequence = useCallback(() => {
-    if (!session.isActive) return;
+  // Store the getNextStep function in a ref to avoid dependency issues
+  const getNextStepRef = useRef(getNextStep);
+
+  // Update the getNextStep ref when the function changes
+  useEffect(() => {
+    getNextStepRef.current = getNextStep;
+  }, [getNextStep]);
+
+  // Set up and clean up the interval for step changes
+  useEffect(() => {
+    // Clean up any existing interval first
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+
+    // Only set up interval if session is active
+    if (!session.isActive) {
+      return;
+    }
+
+    console.log("Setting up step sequence interval");
 
     // Calculate time between steps based on difficulty
     const stepInterval = getTimeBetweenSteps(config);
+    console.log(`Step interval: ${stepInterval}ms`);
 
     // Set up interval to change steps
-    const intervalId = setInterval(() => {
-      getNextStep();
+    intervalRef.current = setInterval(() => {
+      console.log("Interval triggered, getting next step");
+      // We call the function from the ref to ensure we're using the latest version
+      getNextStepRef.current();
     }, stepInterval);
 
-    // Clean up interval when session ends
-    return () => clearInterval(intervalId);
-  }, [session.isActive, config, getNextStep]);
-
-  // Start step sequence when session becomes active
-  useEffect(() => {
-    if (session.isActive) {
-      const cleanup = startStepSequence();
-      return cleanup;
-    }
-  }, [session.isActive, startStepSequence]);
+    // Return cleanup function
+    return () => {
+      console.log("Cleaning up step sequence interval");
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, [session.isActive, config]); // Only depend on session.isActive and config
 
   return {
     currentStep,

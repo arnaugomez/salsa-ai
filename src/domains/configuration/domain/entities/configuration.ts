@@ -39,7 +39,7 @@ export interface Configuration {
  */
 export function getTimeBetweenSteps(config: Configuration): number {
   // Base time in milliseconds
-  const baseTime = 3000;
+  const baseTime = 2000;
 
   // Adjust based on difficulty (1-5)
   // Higher difficulty = more time between steps
