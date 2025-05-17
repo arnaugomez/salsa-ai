@@ -18,7 +18,7 @@ export async function startDanceSessionUseCase(
   const newSession = startDanceSession(session, initialStep);
   
   // Play the sound for the initial step
-  await soundService.playStepSound(initialStep, voiceId);
+  soundService.playStepSound(initialStep, voiceId);
   
   return newSession;
 }

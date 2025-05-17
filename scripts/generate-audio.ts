@@ -34,42 +34,32 @@ if (!fs.existsSync(outputDir)) {
 
 async function generateAudio(
   step: DanceStep,
-  _voice: Voice,
+  voice: Voice,
   filePath: string
 ): Promise<void> {
-  // SSML needs to specify the voice
-  //   const ssmlWithVoice = `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-  //     <voice name="${voiceName}">
-  //         ${ssml.replace(/<speak>|<\/speak>/gi, "")}
-  //     </voice>
-  // </speak>`;
+  const ssmlWithVoice = `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="es-ES">
+      <voice name="${voice.id}">
+        ¡${step.sayings[0]}!
+      </voice>
+  </speak>`;
+//   const ssmlWithVoice = `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US">
+//     <voice name="en-US-SaraNeural">
+//         <mstts:express-as style="cheerful" styledegree="2">
+//             That'd be just amazing!
+//         </mstts:express-as>
+//         <mstts:express-as style="my-custom-style" styledegree="0.01">
+//             What's next?
+//         </mstts:express-as>
+//     </voice>
+// </speak>`
+  
 
   const audioConfig = AudioConfig.fromAudioFileOutput(filePath);
-  speechConfig.speechSynthesisVoiceName = _voice.id
   const synthesizer = new SpeechSynthesizer(speechConfig, audioConfig);
 
   await new Promise((resolve, reject) => {
-    synthesizer.speakTextAsync(
-      step.name,
-      (result) => {
-        if (result.reason === ResultReason.SynthesizingAudioCompleted) {
-          console.log(`Audio generated successfully: ${filePath}`);
-          resolve(null);
-        } else {
-          console.error(
-            `Error generating audio for ${filePath}: ${result.errorDetails}`
-          );
-          reject(new Error(result.errorDetails));
-        }
-        synthesizer.close()
-      },
-      (err) => {
-        console.error(`Speech synthesis error for ${filePath}: ${err}`);
-        reject(err);
-      }
-    );
-    // synthesizer.speakSsmlAsync(
-    //   ssmlWithVoice,
+    // synthesizer.speakTextAsync(
+    //   step.name,
     //   (result) => {
     //     if (result.reason === ResultReason.SynthesizingAudioCompleted) {
     //       console.log(`Audio generated successfully: ${filePath}`);
@@ -80,12 +70,32 @@ async function generateAudio(
     //       );
     //       reject(new Error(result.errorDetails));
     //     }
+    //     synthesizer.close();
     //   },
     //   (err) => {
     //     console.error(`Speech synthesis error for ${filePath}: ${err}`);
     //     reject(err);
     //   }
     // );
+    synthesizer.speakSsmlAsync(
+      ssmlWithVoice,
+      (result) => {
+        if (result.reason === ResultReason.SynthesizingAudioCompleted) {
+          console.log(`Audio generated successfully: ${filePath}`);
+          resolve(null);
+        } else {
+          console.error(
+            `Error generating audio for ${filePath}: ${result.errorDetails}`
+          );
+          reject(new Error(result.errorDetails));
+        }
+        synthesizer.close();
+      },
+      (err) => {
+        console.error(`Speech synthesis error for ${filePath}: ${err}`);
+        reject(err);
+      }
+    );
   });
 }
 
@@ -93,11 +103,11 @@ async function main() {
   console.log("Starting audio generation process...");
   console.log(`Output directory: ${outputDir}`);
 
-  for (const step of allSteps as DanceStep[]) {
-    for (const voice of availableVoices as Voice[]) {
+  for (const step of allSteps) {
+    for (const voice of availableVoices) {
       // Assuming the first saying is the one to use
 
-      const fileName = `${voice.id}_${step.id}_0.wav`;
+      const fileName = `${voice.id}_${step.id}_0.mp3`;
       const filePath = path.join(outputDir, fileName);
 
       if (fs.existsSync(filePath)) {

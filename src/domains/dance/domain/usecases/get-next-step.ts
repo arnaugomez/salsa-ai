@@ -50,7 +50,7 @@ export async function getNextStepUseCase(
   }
   
   // Play the sound for the next step
-  await soundService.playStepSound(nextStep, voiceId);
+  soundService.playStepSound(nextStep, voiceId);
   
   // Update the session with the new step
   return updateCurrentStep(session, nextStep);
