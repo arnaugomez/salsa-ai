@@ -84,7 +84,7 @@ export function ConfigurationPage() {
         {/* Voice selector */}
         <div className="w-full">
           <h2 className="text-2xl font-bold mb-4 text-primary">
-            Voz del instructor
+            Ajustes de audio
           </h2>
           <VoiceSelector
             selectedVoice={configViewModel.configuration.selectedVoice}
