@@ -55,9 +55,9 @@ export function getTimeBetweenSteps(config: Configuration): number {
 export function createDefaultConfiguration(): Configuration {
   return {
     selectedDance: "salsa",
-    selectedMode: "couple",
+    selectedMode: "single",
     difficulty: 3,
     selectedSteps: [],
-    selectedVoice: "es-CU-BelkysNeural",
+    selectedVoice: "es-ES-AlvaroNeural",
   };
 }
