@@ -13,12 +13,6 @@ export interface Voice {
  */
 export const availableVoices: Voice[] = [
   {
-    id: "es-ES-Tristan:DragonHDLatestNeural",
-    name: "Tristan (Español)",
-    gender: "male",
-    locale: "es-ES",
-  },
-  {
     id: "es-CU-BelkysNeural",
     name: "Belkys (Cubana)",
     gender: "female",
@@ -51,6 +45,18 @@ export const availableVoices: Voice[] = [
   {
     id: "es-ES-LaiaNeural",
     name: "Laia (Española)",
+    gender: "female",
+    locale: "es-ES",
+  },
+  {
+    id: "es-ES-Tristan:DragonHDLatestNeural",
+    name: "Tristan (Español)",
+    gender: "male",
+    locale: "es-ES",
+  },
+  {
+    id: "es-ES-Ximena:DragonHDLatestNeural",
+    name: "Ximena (Española)",
     gender: "female",
     locale: "es-ES",
   },
