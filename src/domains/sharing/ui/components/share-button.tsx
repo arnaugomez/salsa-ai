@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Button, ButtonProps } from "@/components/ui/button";
 import { shareSessionUseCase } from "../../domain/usecases";
-import { useDanceSession } from "@/domains/dance/ui/contexts/dance-session-context";
 import { toast } from "sonner";
 
 interface ShareButtonProps extends Omit<ButtonProps, "onClick"> {
@@ -18,13 +17,12 @@ export function ShareButton({
   ...props
 }: ShareButtonProps) {
   const [isSharing, setIsSharing] = useState(false);
-  const { session } = useDanceSession();
 
   const handleShare = async () => {
     setIsSharing(true);
 
     try {
-      const success = await shareSessionUseCase(session);
+      const success = await shareSessionUseCase();
 
       if (success) {
         toast.success("¡Enlace copiado al portapapeles!");
