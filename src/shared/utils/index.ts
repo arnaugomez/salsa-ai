@@ -1,5 +1,5 @@
 /**
- * Shared utility functions for the Salsa Pro application
+ * Shared utility functions for the Salsa AI application
  */
 
 /**
@@ -10,7 +10,9 @@
 export const formatTime = (seconds: number): string => {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = Math.floor(seconds % 60);
-  return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+  return `${minutes.toString().padStart(2, "0")}:${remainingSeconds
+    .toString()
+    .padStart(2, "0")}`;
 };
 
 /**
@@ -31,5 +33,5 @@ export const getRandomInt = (min: number, max: number): number => {
  * @returns Promise that resolves after the specified time
  */
 export const delay = (ms: number): Promise<void> => {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 };

@@ -2,7 +2,7 @@ import { Configuration, createDefaultConfiguration } from '../../domain/entities
 import { availableVoices } from './data';
 
 // Local storage keys
-const CONFIG_STORAGE_KEY = 'salsa-pro-configuration';
+const CONFIG_STORAGE_KEY = 'salsa-ai-config';
 
 /**
  * Repository for accessing and storing configuration

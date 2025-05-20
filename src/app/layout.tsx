@@ -9,7 +9,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Salsa Pro - Instructor de Baile",
+  title: "Salsa AI - Instructor de Baile",
   description: "Aprende a bailar salsa con instrucciones de audio paso a paso",
 };
 

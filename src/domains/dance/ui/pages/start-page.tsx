@@ -50,7 +50,7 @@ export function StartPage({ onStartDance }: StartPageProps) {
   };
 
   return (
-    <PageContainer title="Salsa Pro">
+    <PageContainer title="Salsa AI">
       <div className="flex flex-col items-center gap-8 w-full">
         <p className="text-xl text-center">
           Bienvenido a tu instructor de baile personal

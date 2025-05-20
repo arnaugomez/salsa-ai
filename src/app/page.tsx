@@ -68,7 +68,7 @@ export default function Home() {
 
         <footer className="mt-auto py-4 text-center text-sm text-muted-foreground">
           <p>
-            © {new Date().getFullYear()} Salsa Pro - Todos los derechos
+            © {new Date().getFullYear()} Salsa AI - Todos los derechos
             reservados
           </p>
         </footer>

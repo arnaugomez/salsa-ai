@@ -1,8 +1,8 @@
-# Salsa Pro - Architecture Plan
+# Salsa AI - Architecture Plan
 
 ## Overview
 
-Salsa Pro is a web application that helps people practice salsa dancing (and potentially other dance styles in the future) by providing audio instructions for dance steps. The application allows users to select the type of dance, mode (single or couple), and difficulty level, and then guides them through a sequence of dance steps with audio instructions.
+Salsa AI is a web application that helps people practice salsa dancing (and potentially other dance styles in the future) by providing audio instructions for dance steps. The application allows users to select the type of dance, mode (single or couple), and difficulty level, and then guides them through a sequence of dance steps with audio instructions.
 
 ## Architecture
 

@@ -1,4 +1,4 @@
-# Implementation Tasks - Salsa Pro
+# Implementation Tasks - Salsa AI
 
 ## Initial Setup
 
