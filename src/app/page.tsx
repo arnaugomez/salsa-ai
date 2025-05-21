@@ -58,11 +58,15 @@ export default function Home() {
       <div className="min-h-screen flex flex-col">
         {renderPage()}
 
-        <footer className="mt-auto py-4 text-center text-sm text-muted-foreground">
+        <footer className="mt-auto px-4 py-4 text-center text-sm text-muted-foreground">
           <p>
             Salsa AI, proyecto de AI-nau. Si sabes programar o quieres sugerir
             una mejora,{" "}
-            <a className="underline" href="https://github.com/arnaugomez/salsa-ai" target="_blank">
+            <a
+              className="underline"
+              href="https://github.com/arnaugomez/salsa-ai"
+              target="_blank"
+            >
               ¡contribuye en GitHub!
             </a>
           </p>
