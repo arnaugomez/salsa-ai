@@ -15,7 +15,7 @@ export function PageContainer({
   className = '' 
 }: PageContainerProps) {
   return (
-    <div className={`flex flex-col items-center justify-start min-h-screen p-4 sm:p-8 ${className}`}>
+    <div className={`flex flex-col items-center justify-start p-4 sm:p-8 ${className}`}>
       {title && (
         <h1 className="text-3xl font-bold text-primary mb-6">{title}</h1>
       )}

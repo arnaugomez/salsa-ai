@@ -62,7 +62,7 @@ export default function Home() {
           <p>
             Salsa AI, proyecto de AI-nau. Si sabes programar o quieres sugerir
             una mejora,{" "}
-            <a href="https://github.com/arnaugomez/salsa-ai" target="_blank">
+            <a className="underline" href="https://github.com/arnaugomez/salsa-ai" target="_blank">
               ¡contribuye en GitHub!
             </a>
           </p>
