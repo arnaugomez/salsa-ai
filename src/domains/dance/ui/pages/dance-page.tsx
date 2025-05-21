@@ -95,9 +95,12 @@ export function DancePage({ config, onStopDance }: DancePageProps) {
 
             {/* Playlists */}
             <div className="w-full mt-8">
-              <h2 className="text-2xl font-bold mb-4 text-primary">
+              <h2 className="text-2xl font-bold mb-2 text-primary">
                 Playlists recomendadas
               </h2>
+              <p className="text-sm text-slate-600 mb-6">
+                Pon música mientras practicas los pasos de baile.
+              </p>
               <PlaylistGrid playlists={playlists} />
             </div>
           </>
