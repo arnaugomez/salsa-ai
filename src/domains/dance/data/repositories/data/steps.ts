@@ -45,6 +45,7 @@ const coupleCubanStepIds = [
   "salsa-couple-cafe",
   "salsa-couple-cubanita",
   "salsa-couple-veinticinco",
+  "salsa-couple-setenta-y-dos"
 ];
 
 /**
@@ -418,6 +419,15 @@ export const salsaCoupleSteps: DanceStep[] = [
     id: "salsa-couple-veinticinco",
     name: "Veinticinco",
     sayings: ["Veinticinco"],
+    dance: "salsa",
+    mode: "couple",
+    course: "salsa-2",
+    nextSteps: coupleCubanStepIds,
+  },
+  {
+    id: "salsa-couple-setenta-y-dos",
+    name: "Setenta y dos",
+    sayings: ["Setenta y dos"],
     dance: "salsa",
     mode: "couple",
     course: "salsa-2",
