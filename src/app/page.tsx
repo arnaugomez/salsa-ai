@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { StartPage } from "@/domains/dance/ui/pages/start-page";
 import { DancePage } from "@/domains/dance/ui/pages/dance-page";
 import { ConfigurationPage } from "@/domains/configuration/ui/pages/configuration-page";
@@ -17,13 +17,9 @@ export default function Home() {
   const [appState, setAppState] = useState<AppState>("start");
 
   // State for the configuration
-  const [config, setConfig] = useState<Configuration | null>(null);
-
-  // Load configuration on mount
-  useEffect(() => {
-    const savedConfig = configurationRepository.getConfiguration();
-    setConfig(savedConfig);
-  }, []);
+  const [config, setConfig] = useState<Configuration>(() =>
+    configurationRepository.getConfiguration()
+  );
 
   // Handle start dance button click
   const handleStartDance = (newConfig: Configuration) => {
@@ -43,10 +39,6 @@ export default function Home() {
 
   // Render the appropriate page based on the app state
   const renderPage = () => {
-    if (!config) {
-      return <div>Cargando configuración...</div>;
-    }
-
     switch (appState) {
       case "start":
         return <StartPage onStartDance={handleStartDance} />;
