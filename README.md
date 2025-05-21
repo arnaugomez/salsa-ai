@@ -44,8 +44,4 @@ The project follows a DDD (Domain-Driven Design) and Hexagonal architecture, org
 
 ## License
 
-All rights reserved.
-
----
-
-Would you like help localizing the audio instructions or UI text as well?
+This project is licensed under the [MIT License](./LICENSE.txt).
