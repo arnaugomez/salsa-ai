@@ -149,7 +149,7 @@ function IosSafariWarning() {
     >
       <p className="font-bold">Advertencia</p>
       <p>
-        El sonido no funcione en este navegador (iOS Safari). Recomendamos usar
+        El sonido no funciona en este navegador (iOS Safari). Recomendamos usar
         otro navegador para una mejor experiencia.
       </p>
     </div>
