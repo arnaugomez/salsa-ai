@@ -16,7 +16,6 @@ interface DancePageProps {
 }
 
 export function DancePage({ config, onStopDance }: DancePageProps) {
-
   // State for playlists
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
 
@@ -34,7 +33,6 @@ export function DancePage({ config, onStopDance }: DancePageProps) {
 
   // Handle start dance button click
   const handleStartDance = async () => {
-
     // Check if there are selected steps
     if (config.selectedSteps.length === 0) {
       // If no steps are selected, use all steps for the selected dance and mode
@@ -92,6 +90,9 @@ export function DancePage({ config, onStopDance }: DancePageProps) {
               Comenzar a bailar
             </Button>
 
+            {/** ADD THE Safari iOS warning alert here */}
+            <IosSafariWarning />
+
             {/* Playlists */}
             <div className="w-full mt-8">
               <h2 className="text-2xl font-bold mb-4 text-primary">
@@ -121,5 +122,36 @@ export function DancePage({ config, onStopDance }: DancePageProps) {
         )}
       </div>
     </PageContainer>
+  );
+}
+
+// Component to display a warning for iOS Safari users
+function IosSafariWarning() {
+  const [isIosSafari, setIsIosSafari] = useState(false);
+
+  useEffect(() => {
+    const userAgent = navigator.userAgent;
+    const isIOS = /iPad|iPhone|iPod/.test(userAgent);
+    const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent);
+    if (isIOS && isSafari) {
+      setIsIosSafari(true);
+    }
+  }, []);
+
+  if (!isIosSafari) {
+    return null;
+  }
+
+  return (
+    <div
+      className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 my-4"
+      role="alert"
+    >
+      <p className="font-bold">Advertencia</p>
+      <p>
+        El sonido no funcione en este navegador (iOS Safari). Recomendamos usar
+        otro navegador para una mejor experiencia.
+      </p>
+    </div>
   );
 }
