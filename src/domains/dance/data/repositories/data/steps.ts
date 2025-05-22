@@ -18,6 +18,7 @@ const singleStepIds = [
   "salsa-single-vuelta-izquierda",
   "salsa-single-echeverria",
   "salsa-single-reggaeton",
+  "salsa-single-lateral-cruzado",
 ];
 
 const coupleBasicStepIds = [
@@ -45,7 +46,7 @@ const coupleCubanStepIds = [
   "salsa-couple-cafe",
   "salsa-couple-cubanita",
   "salsa-couple-veinticinco",
-  "salsa-couple-setenta-y-dos"
+  "salsa-couple-setenta-y-dos",
 ];
 
 /**
@@ -203,6 +204,15 @@ export const salsaSingleSteps: DanceStep[] = [
     id: "salsa-single-reggaeton",
     name: "Reggaeton",
     sayings: ["Reggaeton"],
+    dance: "salsa",
+    mode: "single",
+    course: "salsa-2",
+    nextSteps: singleStepIds,
+  },
+  {
+    id: "salsa-single-lateral-cruzado",
+    name: "Lateral cruzado",
+    sayings: ["Lateral cruzado"],
     dance: "salsa",
     mode: "single",
     course: "salsa-2",
