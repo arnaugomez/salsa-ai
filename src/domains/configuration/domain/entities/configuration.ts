@@ -1,3 +1,5 @@
+import { allSteps } from "@/domains/dance/data/repositories/data/steps";
+
 /**
  * Represents user configuration settings
  */
@@ -57,7 +59,7 @@ export function createDefaultConfiguration(): Configuration {
     selectedDance: "salsa",
     selectedMode: "single",
     difficulty: 3,
-    selectedSteps: [],
+    selectedSteps: allSteps.map((step) => step.id),
     selectedVoice: "es-ES-AlvaroNeural",
   };
 }
